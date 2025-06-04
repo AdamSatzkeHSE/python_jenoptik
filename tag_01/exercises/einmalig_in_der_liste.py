@@ -39,6 +39,8 @@ erlaubte_werten.pop()
 erlaubte_werten.pop()
 erlaubte_werten.pop()
 
+# veraenderung
+
 print(erlaubte_werten)
 
 
