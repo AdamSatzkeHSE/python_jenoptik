@@ -44,14 +44,25 @@ def open_file(filename):
     file_stream.close()
     return contents
 
-def define_filestreams():
-    pass
+def get_words_list(content_list):
+    """
+    Get the words of each list with split.
+    Return a new list. Each Element in the list is a new list with words as elements.
+    """
+    words_list = []
+    for content in content_list:
+        words = content.split()
+        words_list.append(words)
+    return words_list
 
-def get_words():
-    pass
-
-def count_words():
-    pass
+def count_words(words_list):
+    output = []
+    for liste in words_list:
+        result = {}
+        for word in liste:
+            result[word] = liste.count(word)
+        output.append(result)
+    return output
 
 """ Main Program """
 file_list = ["Kafka.txt", "Lorem Ipsum.txt", "Werther.txt"]
@@ -64,21 +75,10 @@ for file in file_list:
     # print(content)
 
 # Dictionary for output. Get words in lists.
-result = {}
-words_list = []
-for content in content_list:
-    words = content.split()
-    words_list.append(words)
-for i in words_list:
-    print(i)
+words_list = get_words_list(content_list)
+# Count words and create dictionary with end result.
+result = count_words(words_list)
+for dictionary in result:
+    sorted_dictionary = dict(sorted(dictionary.items(), key= lambda x: x[1], reverse=True))
+    print(sorted_dictionary)
 
-# Count words
-output = []
-for liste in words_list:
-    result = {}
-    for word in liste:
-        result[word] = liste.count(word)
-    output.append(result)
-
-for ergebnis in output:
-    print(ergebnis)
