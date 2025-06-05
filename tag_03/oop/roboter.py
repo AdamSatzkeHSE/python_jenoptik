@@ -3,16 +3,29 @@
 
 # Wir haben folgende Roboterklasse geschrieben:
 
-class Robot:
+class RobotError(Exception):
+    def __init__(self, message):
+        self.message = message
 
+class Robot:
     def __init__(self, name):
+        if name == "Hugo":
+            # print("Hugo ist deprecated.")
+            # raise RobotError("Error Message Roboter Name nicht erlaubt.")
+            name = "Marvin"
+
         self.name = name
 
 # Letzte drei Zeilen:
-x = Robot("Marvin")
-y = Robot("Hugo")
-print(x.name, y.name)  # Marvin Hugo
+try:
+    x = Robot("Marvin")
+    y = Robot("Hugo")
+    print(x.name, y.name)  # Marvin Hugo
+except RobotError as rb:
+    print(rb)
 
+# Hier programmiere ich mein Roboter weiter
+print("Weitergehts")
 # Diese Klasse erfreut sich nun auf einmal weltweit großer Beliebtheit.
 # Wir haben allerdings ein Problem:
 # Die internationale Robotergewerkschaft konnte ein weltweites Verbot durchsetzen,
