@@ -17,6 +17,7 @@ file_list = []
 
 # print("Aktuelles Arbeitsverzeichnis: {}".format(os.getcwd()))
 print("File list")
+print("Inhalte CWD: ", os.listdir())
 for file in os.listdir():
     print(file)
 

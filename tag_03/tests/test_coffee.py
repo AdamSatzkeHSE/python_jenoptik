@@ -12,3 +12,4 @@ class TestCoffee(unittest.TestCase):
         actual = self.coffee_instanz.get_coffee()
         # Assert
         self.assertEqual(expected, actual)
+

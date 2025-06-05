@@ -27,6 +27,10 @@
 # Roboters, dann bewegt er sich 10 Felder östlich
 # und befindet sich anschließend in Position [13, 7].
 
+class RobotException(Exception):
+    def __init__(self):
+        self.message = "Robot ERROR"
+
 class Robot:
     """
     Roboter Klasse
@@ -50,6 +54,10 @@ class Robot:
         # if len(name) > 10:
         #     for i in range(10):
         #         self.name += name[i]
+    def robot_error(self):
+        # Code
+        if self.name != "Hugo":
+            raise RobotException()
 
     def move(self, distance):
         """
