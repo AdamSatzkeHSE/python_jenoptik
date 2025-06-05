@@ -1,4 +1,3 @@
-
 # Roboter 2
 
 # In dieser Aufgabe geht wieder um eine Roboterklasse.
@@ -27,3 +26,64 @@
 # also x.orientation == "east", und ist [3, 7] die aktuelle Position des
 # Roboters, dann bewegt er sich 10 Felder östlich
 # und befindet sich anschließend in Position [13, 7].
+
+class Robot:
+    """
+    Roboter Klasse
+    """
+    # Klassenvariable *orientations*: liste mit erlaubten Orientations.
+    # Gültig für alle Roboter Instanzen.
+    orientations = ["west", "north", "south", "east"]
+
+    def __init__(self, name, x, y, orientation):
+        # Attribute
+        self.x = x
+        self.y = y
+        if orientation not in Robot.orientations:
+            raise Exception("Orientation {} nicht erlaubt".format(orientation))
+        self.orientation = orientation
+        self.position = [self.x, self.y]
+        # Kurze Lösung mit String - Slicing.
+        self.name = name[:10]   # Nehme immer nur die ersten 10 Buchstaben
+        # Lange Lösung.
+        # self.name = ''
+        # if len(name) > 10:
+        #     for i in range(10):
+        #         self.name += name[i]
+
+    def move(self, distance):
+        """
+        Erwartet ein Parameter distance, der angibt, um welchem Betrag
+        sich der Roboter in Richtung der eingestellten Orientierung bewegen soll.
+        Wird der Roboter bswp. mit move(10) aufgerufen, und ist er östlich orientiert,
+        dann bewegt er sich östlich um 10 Felder. Position wird dementsprechend
+        aktualisiert.
+        """
+        if self.orientation == "north":
+            self.position[1] += distance
+        elif self.orientation == "south":
+            self.position[1] -= distance
+        elif self.orientation == "west":
+            self.position[0] -= distance
+        elif self.orientation == "east":
+            self.position[0] += distance
+        else:
+            raise ValueError("Orientierung nicht erkannt.")
+
+if __name__ == '__main__':
+    # Test main module here
+    robot = Robot("Marvin123456790", 0, 0, "west")
+    print(robot.orientation)
+    print(robot.name)
+    # Init: pos = [0,0], orientation = "west"
+    # move(10)
+    # output: pos = [-10, 0]
+    print("Anfang: ", robot.position)
+    robot.move(10)
+    print("Ende: ", robot.position)
+    robot.orientation = "south"
+    robot.move(2)
+    robot.orientation = "east"
+    robot.move(4)
+    print(robot.position)
+
